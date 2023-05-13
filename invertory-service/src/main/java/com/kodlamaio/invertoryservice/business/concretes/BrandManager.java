@@ -1,6 +1,6 @@
 package com.kodlamaio.invertoryservice.business.concretes;
 
-import com.kodlamaio.commonpackage.events.BrandDeletedEvent;
+import com.kodlamaio.commonpackage.events.invertory.BrandDeletedEvent;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.invertoryservice.business.abstracts.BrandService;
 import com.kodlamaio.invertoryservice.business.dto.requests.create.CreateBrandRequest;

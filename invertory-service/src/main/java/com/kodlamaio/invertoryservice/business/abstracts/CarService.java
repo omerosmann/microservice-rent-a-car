@@ -6,6 +6,7 @@ import com.kodlamaio.invertoryservice.business.dto.responses.create.CreateCarRes
 import com.kodlamaio.invertoryservice.business.dto.responses.get.GetAllCarsResponse;
 import com.kodlamaio.invertoryservice.business.dto.responses.get.GetCarResponse;
 import com.kodlamaio.invertoryservice.business.dto.responses.update.UpdateCarResponse;
+import com.kodlamaio.invertoryservice.entities.enums.State;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,4 +21,8 @@ public interface CarService {
     UpdateCarResponse update(UUID id, UpdateCarRequest request);
 
     void delete(UUID id);
+
+    void checkIfCarAvailable(UUID id);
+
+    void changeStateByCarId(State state, UUID id);
 }

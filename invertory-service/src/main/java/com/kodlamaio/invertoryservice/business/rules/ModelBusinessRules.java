@@ -1,5 +1,6 @@
 package com.kodlamaio.invertoryservice.business.rules;
 
+import com.kodlamaio.commonpackage.utils.exception.BusinessException;
 import com.kodlamaio.invertoryservice.repository.ModelRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,7 @@ public class ModelBusinessRules {
 
     public void checkIfModelExists(UUID id) {
         if (!repository.existsById(id)) {
-            //TODO : BusinessException
-            throw new RuntimeException("MODEL_NOT_EXISTS");
+            throw new BusinessException("MODEL_NOT_EXISTS");
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.kodlamaio.invertoryservice.business.kafka.producer;
 
-import com.kodlamaio.commonpackage.events.BrandDeletedEvent;
-import com.kodlamaio.commonpackage.events.CarCreatedEvent;
-import com.kodlamaio.commonpackage.events.CarDeletedEvent;
+import com.kodlamaio.commonpackage.events.invertory.BrandDeletedEvent;
+import com.kodlamaio.commonpackage.events.invertory.CarCreatedEvent;
+import com.kodlamaio.commonpackage.events.invertory.CarDeletedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
