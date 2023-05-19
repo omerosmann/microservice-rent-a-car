@@ -33,7 +33,7 @@ server:
   port: 0
 
 
-#  !!! Fault Tolerance Limiter Different Solution !!!
+
 #resilience4j:
 #  retry:
 #    instances:
