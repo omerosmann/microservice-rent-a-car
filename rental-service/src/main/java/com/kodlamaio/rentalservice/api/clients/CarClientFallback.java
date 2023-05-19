@@ -18,8 +18,8 @@ public class CarClientFallback implements CarClient {
     long lastCallTime = 0l;
     long timeDifference = 0l;
 
-    @Retryable(maxAttempts = 5, backoff = @Backoff(value = 15000))
-    //@Retry(name = "checkIfCarAvailable")  !!! Fault Tolerance Limiter Different Solution !!!
+    @Retryable(maxAttempts = 5, backoff = @Backoff(value = 15000)) // !!! Different Solution !!!
+    //@Retry(name = "checkIfCarAvailable")  
     @Override
     public ClientResponse checkIfCarAvailable(UUID carId) {
         timeDifference = System.currentTimeMillis() - lastCallTime;
