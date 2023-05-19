@@ -3,4 +3,4 @@
 
 ![Adsız](https://github.com/omerosmann/microservice-rent-a-car/assets/113211889/6a2fe556-70ff-4d0c-9533-254aa2a799f5)
 
-![Adsız](https://github.com/omerosmann/microservice-rent-a-car/assets/113211889/eac9fa70-9a0d-4972-8b83-a19d19808ca1)
+![Adsız](https://github.com/omerosmann/microservice-rent-a-car/assets/113211889/f3f9bb1e-cf7e-41ae-bedd-36be111f608a)
