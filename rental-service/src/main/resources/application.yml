@@ -34,9 +34,9 @@ server:
 
 
 #  !!! Fault Tolerance Limiter Different Solution !!!
-#  resilience4j:
-#    retry:
-#      instances:
-#        checkIfCarAvailable:
-#          max-attempts: 5
-#          wait-duration: 15s
+#resilience4j:
+#  retry:
+#    instances:
+#      checkIfCarAvailable:
+#        maxAttempts: 5
+#        waitDuration: 15s
