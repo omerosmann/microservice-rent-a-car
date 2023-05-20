@@ -12,7 +12,6 @@ import java.util.UUID;
 @FeignClient(name = "inventory-service", fallback = CarClientFallback.class)
 public interface CarClient {
 
-
     @Retry(name = "checkIfCarAvailable")
     @GetMapping(value = "/api/cars/check-car-available/{carId}")
     ClientResponse checkIfCarAvailable(@PathVariable UUID carId);

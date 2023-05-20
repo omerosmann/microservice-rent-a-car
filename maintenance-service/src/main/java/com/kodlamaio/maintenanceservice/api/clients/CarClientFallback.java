@@ -11,7 +11,6 @@ import java.util.UUID;
 @Slf4j
 @Component
 public class CarClientFallback implements CarClient {
-
     int i = 0;
     long lastCallTime = 0l;
     long timeDifference = 0l;
@@ -26,6 +25,4 @@ public class CarClientFallback implements CarClient {
         lastCallTime = System.currentTimeMillis();
         throw new RuntimeException("INVENTORY-SERVICE NOT AVAILABLE RIGHT NOW!");
     }
-
-
 }
