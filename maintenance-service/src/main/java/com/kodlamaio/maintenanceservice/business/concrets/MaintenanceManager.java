@@ -36,7 +36,7 @@ public class MaintenanceManager implements MaintenanceService {
     public List<GetAllMaintenancesResponse> getAll() {
         List<Maintenance> maintenances = repository.findAll();
         List<GetAllMaintenancesResponse> response = maintenances.stream()
-                .map(maintenance -> modelMapperService.forResponse().map(maintenances, GetAllMaintenancesResponse.class)).toList();
+                .map(maintenance -> modelMapperService.forResponse().map(maintenance, GetAllMaintenancesResponse.class)).toList();
 
         return response;
     }
@@ -57,7 +57,7 @@ public class MaintenanceManager implements MaintenanceService {
         maintenance.setCompleted(true);
         maintenance.setEndDate(LocalDateTime.now());
         repository.save(maintenance);
-        sendKafkaMaintenanceReturnEvent(carId); //TODO : maintenance.getCarId;
+        sendKafkaMaintenanceReturnEvent(carId); 
         GetMaintenanceResponse response = modelMapperService.forResponse().map(maintenance, GetMaintenanceResponse.class);
 
         return response;
