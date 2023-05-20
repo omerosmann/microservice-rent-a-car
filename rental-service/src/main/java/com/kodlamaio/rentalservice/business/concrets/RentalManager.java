@@ -90,7 +90,8 @@ public class RentalManager implements RentalService {
     }
 
     private void sendKafkaRentalDeletedEvent(UUID id) {
-        var carId = repository.findById(id).orElseThrow().getCarid();
+        var carId = repository.findById(id).orElseThrow().getCarId();
         producer.sendMessage(new RentalDeletedEvent(carId), "rental-deleted");
     }
 }
+

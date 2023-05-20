@@ -19,7 +19,7 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private UUID carid;
+    private UUID carId;
     private double dailyPrice;
     private double totalPrice;
     private int rentedForDays;
