@@ -1,8 +1,8 @@
 package com.kodlamaio.filterservice.api.controllers;
 
 import com.kodlamaio.filterservice.business.abstracts.FilterService;
-import com.kodlamaio.filterservice.business.dto.response.GetAllFiltersResponse;
-import com.kodlamaio.filterservice.business.dto.response.GetFilterResponse;
+import com.kodlamaio.filterservice.business.dto.responses.GetAllFiltersResponse;
+import com.kodlamaio.filterservice.business.dto.responses.GetFilterResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

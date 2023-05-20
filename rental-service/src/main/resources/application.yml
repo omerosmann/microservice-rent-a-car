@@ -31,10 +31,11 @@ eureka:
     prefer-ip-address: true
 server:
   port: 0
-  
+
+
 #resilience4j:
 #  retry:
 #    instances:
 #      checkIfCarAvailable:
 #        maxAttempts: 5
-#        waitDuration: 15s
+#        waitDuration: 5s

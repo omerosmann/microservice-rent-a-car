@@ -32,9 +32,10 @@ eureka:
 server:
   port: 0
 
-#  resilience4j:
-#    retry:
-#      instances:
-#        checkIfCarAvailable:
-#          max-attempts: 5
-#          wait-duration: 15s
+
+#resilience4j:
+#  retry:
+#    instances:
+#      checkIfCarAvailable:
+#        maxAttempts: 5
+#        waitDuration: 5s
