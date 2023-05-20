@@ -1,6 +1,6 @@
 spring:
   application:
-    name: inventory-service
+    name: invertory-service
   datasource:
     username: postgres
     password: '12345'
