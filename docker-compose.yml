@@ -2,17 +2,15 @@ version: '3.8'
 
 services:
   kafka:
-    container_name: kafka-t2
+    container_name: kafkadb-dev
     image: bashj79/kafka-kraft
     ports:
       - "9092:9092"
     volumes:
       - kafka_data:/opt/kafka/kafka-logs
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
 
   mongodb:
-    container_name: turkcell2-filterdb
+    container_name: filterdb-dev
     image: mongo
     ports:
       - "27017:27017"
