@@ -20,6 +20,7 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+
 eureka:
   client:
     fetch-registry: true
@@ -29,13 +30,15 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${random.value}
     prefer-ip-address: true
+
 server:
   port: 0
 
 
+#Fault Tolerance Limiter Different Solution
 #resilience4j:
 #  retry:
 #    instances:
 #      checkIfCarAvailable:
 #        maxAttempts: 5
-#        waitDuration: 5s
+#        waitDuration: 15s
