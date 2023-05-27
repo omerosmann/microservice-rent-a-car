@@ -3,8 +3,10 @@ package com.kodlamaio.inventoryservice.business.concrets;
 
 import com.kodlamaio.commonpackage.events.invertory.CarCreatedEvent;
 import com.kodlamaio.commonpackage.events.invertory.CarDeletedEvent;
+import com.kodlamaio.commonpackage.events.invoice.InvoiceCreatedEvent;
 import com.kodlamaio.commonpackage.kafka.producer.KafkaProducer;
 import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.PaymentCarResponse;
 import com.kodlamaio.commonpackage.utils.exception.BusinessException;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
@@ -62,6 +64,7 @@ public class CarManager implements CarService {
 
         var createdCar = repository.save(car);
         sendKafkaCarCreatedEvent(createdCar);
+        sendKafkaInvoiceCreatedEvent(createdCar);
 
         var response = mapper.forResponse().map(createdCar, CreateCarResponse.class);
 
@@ -114,6 +117,15 @@ public class CarManager implements CarService {
     private void sendKafkaCarDeletedEvent(UUID id) {
         producer.sendMessage(new CarDeletedEvent(id), "car-deleted");
     }
+
+    private void sendKafkaInvoiceCreatedEvent(Car car){
+        PaymentCarResponse response = new PaymentCarResponse();
+        response.setBrandName(car.getModel().getBrand().getName());
+        response.setModelName(car.getModel().getName());
+        response.setPlate(car.getPlate());
+        producer.sendMessage(response,"invoice-created");
+    }
+
 
     private void validateCarAvailability(UUID id, ClientResponse response) {
         try {

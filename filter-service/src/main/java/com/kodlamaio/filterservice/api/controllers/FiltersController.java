@@ -26,4 +26,8 @@ public class FiltersController {
     public GetFilterResponse getById(@PathVariable String id) {
         return service.getById(id);
     }
+
+
 }
+
+

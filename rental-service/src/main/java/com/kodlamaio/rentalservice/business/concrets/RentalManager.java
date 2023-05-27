@@ -1,9 +1,12 @@
 package com.kodlamaio.rentalservice.business.concrets;
 
+import com.kodlamaio.commonpackage.events.invoice.InvoiceCreatedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalCreatedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalDeletedEvent;
 import com.kodlamaio.commonpackage.kafka.producer.KafkaProducer;
 import com.kodlamaio.commonpackage.utils.dto.CreateRentalPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.PaymentCarResponse;
+import com.kodlamaio.commonpackage.utils.dto.PaymentRequest;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;
 import com.kodlamaio.rentalservice.business.dto.requests.create.CreateRentalRequest;
@@ -70,7 +73,13 @@ public class RentalManager implements RentalService {
         rules.ensurePaymentIsValid(paymentRequest);
 
         repository.save(rental);
+
+        // RENTAL
         sendKafkaRentalCreatedMessage(rental.getCarId());
+
+        // INVOICE
+        sendKafkaInvoiceCreatedMessage(rental.getCarId());
+        addCardHolderResponse(paymentRequest);
 
         var response = mapper.forResponse().map(rental, CreateRentalResponse.class);
 
@@ -102,6 +111,12 @@ public class RentalManager implements RentalService {
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+    private void addCardHolderResponse(PaymentRequest request){
+        PaymentCarResponse response = new PaymentCarResponse();
+        response.setCardHolder(request.getCardHolder());
+    }
+
+
     private void sendKafkaRentalCreatedMessage(UUID carId) {
         producer.sendMessage(new RentalCreatedEvent(carId), "rental-created");
     }
@@ -109,6 +124,10 @@ public class RentalManager implements RentalService {
     private void sendKafkaRentalDeletedEvent(UUID id) {
         var carId = repository.findById(id).orElseThrow().getCarId();
         producer.sendMessage(new RentalDeletedEvent(carId), "rental-deleted");
+    }
+
+    private void sendKafkaInvoiceCreatedMessage(UUID carId){
+        producer.sendMessage(new InvoiceCreatedEvent(carId), "invoice-created");
     }
 
     private double getTotalPrice(Rental rental) {

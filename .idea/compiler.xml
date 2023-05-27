@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="payment-service" />
+        <module name="discovery-server" />
+        <module name="inventory-service" />
+        <module name="maintenance-service" />
+        <module name="common-package" />
+        <module name="invoice-service" />
+        <module name="api-gateway" />
+        <module name="filter-service" />
+        <module name="rental-service" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="common-package" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="filter-service" options="-parameters" />
+      <module name="inventory-service" options="-parameters" />
+      <module name="invoice-service" options="-parameters" />
+      <module name="maintenance-service" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
+      <module name="rental-service" options="-parameters" />
+    </option>
+  </component>
+</project>
