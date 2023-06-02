@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: common-package
+  cloud:
+    config:
+      profile: prod
+  config:
+    import: optional:configserver:http://localhost:8888
