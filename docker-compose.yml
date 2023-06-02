@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  kafka:
+    container_name: kafkadb-dev
+    image: bashj79/kafka-kraft
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka_data:/opt/kafka/kafka-logs
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak-t2
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    command: start-dev
+    volumes:
+      - .:/opt/jboss/keycloak/imports
+
+  mongodb:
+    container_name: filterdb-dev
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  mongodb-invoice:
+    container_name: invoicedb-dev
+    image: mongo
+    ports:
+      - "27018:27018"
+    volumes:
+      - invoicedb_data:/data/db
+
+volumes:
+  kafka_data:
+  mongodb_data:
+  invoicedb_data:
