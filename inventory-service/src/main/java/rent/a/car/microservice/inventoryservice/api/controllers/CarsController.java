@@ -1,10 +1,16 @@
 package rent.a.car.microservice.inventoryservice.api.controllers;
 
+import com.kodlamaio.commonpackage.utils.constants.Roles;
 import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
 import com.kodlamaio.commonpackage.utils.dto.GetCarResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import rent.a.car.microservice.inventoryservice.business.abstracts.CarService;
@@ -24,11 +30,15 @@ public class CarsController {
     private final CarService service;
 
     @GetMapping
+    //Secured,PreAuthorize,PostAuthorize
+    //@Secured("ROLE_admin")
+    @PreAuthorize(Roles.AdminAndUser)
     public List<GetAllCarsResponse> getAll()
     { return service.getAll(); }
 
     @GetMapping("/{id}")
-    public GetCarResponse getById(@PathVariable UUID id)
+    @PostAuthorize("hasRole('admin') || returnObject.modelYear == 2019")
+    public GetCarResponse getById(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt)
     { return service.getById(id); }
 
     @PostMapping
